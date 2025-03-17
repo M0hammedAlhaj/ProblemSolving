@@ -22,6 +22,37 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(subsets(new int[]{1, 2}));
+        allPossibleCharacter("", new char[]{'a', 'b'}, 2);
+    }
+
+
+    public static int fub(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        return n + fub(n - 1);
+    }
+
+    public static void recu(String s, int sum, int sum2, int n) {
+        if (s.length() == n * 2) {
+            if (sum == sum2) System.out.println(s);
+            return;
+        }
+        recu(s + '0', sum, sum2, n);
+        if (s.length() < n) {
+            recu(s + '1', sum + 1, sum2, n);
+        } else {
+            recu(s + '1', sum, sum2 + 1, n);
+        }
+    }
+
+    public static void allPossibleCharacter(String currentWork, char[] input, int k) {
+        if (currentWork.length() == k) {
+            System.out.println(currentWork);
+            return;
+        }
+        for (int i = 0; i < input.length; i++) {
+            allPossibleCharacter(currentWork + input[i], input, k);
+        }
     }
 }
