@@ -1,23 +1,19 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Stack;
-
 public class MinStack {
 
     private Node head;
 
-
-    private ArrayList<Integer> list = new ArrayList<>();
-
     static class Node {
 
         public int val;
+
+        public int min;
         public Node previews;
 
-        public Node(int val) {
+        public Node(int val, int min) {
             this.val = val;
+            this.min = min;
         }
     }
 
@@ -26,26 +22,29 @@ public class MinStack {
     }
 
     public void push(int val) {
-        Node node = new Node(val);
+        /* 0
+        0
+        -2 head -2
+         */
         if (head == null) {
-            list.add(val);
-            head = node;
+            head = new Node(val, val);
             return;
+        }
+        Node node;
+        if (head.min <= val) {
+            node = new Node(val, head.min);
+        } else {
+            node = new Node(val, val);
         }
         node.previews = head;
         head = node;
-        list.add(val);
-        list.sort(Comparator.reverseOrder());
     }
 
     public void pop() {
         if (head == null) {
             return;
         }
-
-        list.remove(Integer.valueOf(head.val));
         head = head.previews;
-
     }
 
     public int top() {
@@ -53,6 +52,6 @@ public class MinStack {
     }
 
     public int getMin() {
-        return list.getLast();
+        return head.min;
     }
 }

@@ -13,12 +13,11 @@ public class Main {
         MinStack minStack = new MinStack();
         minStack.push(-2);
         minStack.push(0);
-        minStack.push(-3);
-        System.out.println(minStack.getMin()); // return -3
+        minStack.push(-1);
+        System.out.println(minStack.getMin());
+        System.out.println(minStack.top());
         minStack.pop();
-        System.out.println(minStack.top());    // return 0
-        System.out.println(minStack.getMin()); // return -2
-
+        System.out.println(minStack.getMin());
 
     }
 }
