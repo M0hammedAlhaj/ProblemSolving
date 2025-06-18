@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Stack;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -24,6 +26,21 @@ public class Main {
             if (j < n) {
                 res[i] = j - i;
             }
+        }
+        return res;
+    }
+
+    public int[] stack(int[] temperatures) {
+        int[] res = new int[temperatures.length];
+        Stack<int[]> stack = new Stack<>(); // pair: [temp, index]
+
+        for (int i = 0; i < temperatures.length; i++) {
+            int t = temperatures[i];
+            while (!stack.isEmpty() && t > stack.peek()[0]) {
+                int[] pair = stack.pop();
+                res[pair[1]] = i - pair[1];
+            }
+            stack.push(new int[]{t, i});
         }
         return res;
     }
