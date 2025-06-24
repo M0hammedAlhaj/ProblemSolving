@@ -4,7 +4,7 @@ package org.example;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        System.out.println(checkInclusion("ab", "ab"));
+        System.out.println(checkInclusion("abc", "ab"));
     }
 
     public static boolean checkInclusion(String s1, String s2) {
